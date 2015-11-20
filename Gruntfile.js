@@ -17,6 +17,11 @@ module.exports = function (grunt) {
                 files: {
                     'static/build/js/app.min.js': ['static/build/js/app.annotated.js']
                 }
+            },
+            templates: {
+                files: {
+                    'static/build/assets/app.templates.min.js': ['static/build/assets/app.templates.js']
+                }
             }
         },
         ngAnnotate: {
@@ -76,11 +81,11 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-sass');
     grunt.loadNpmTasks('grunt-contrib-cssmin');
 
-    grunt.registerTask('release', ['clean:app', 'angular-builder', 'ngAnnotate', 'uglify',
+    grunt.registerTask('release', ['clean:app', 'angular-builder', 'ngAnnotate', 'uglify:app',
         'clean:partials', 'sass', 'cssmin']);
-    grunt.registerTask('heroku', ['clean:app', 'angular-builder', 'ngAnnotate', 'uglify',
-        'clean:partials', 'sass', 'cssmin', 'ngtemplates']);
+    grunt.registerTask('heroku', ['clean:app', 'angular-builder', 'ngAnnotate', 'uglify:app',
+        'clean:partials', 'sass', 'cssmin', 'ngtemplates', 'uglify:templates']);
     grunt.registerTask('debug', ['clean:app', 'angular-builder', 'sass']);
-    grunt.registerTask('templates', ['ngtemplates']);
+    grunt.registerTask('templates', ['ngtemplates', 'uglify:templates']);
 
 };
