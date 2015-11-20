@@ -1,0 +1,64 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html ng-app="bookshelf" xmlns="http://www.w3.org/1999/xhtml" xml:lang="pl">
+<head>
+    <title>Discovery Section Challenge by gbiziel</title>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
+    <meta name="description" content=""/>
+
+    {% load staticfiles %}
+
+    {% if is_production %}
+    <link rel="stylesheet" href="{% static 'build/assets/app.min.css' %}"
+          type="text/css" media="screen, handheld">
+    {% else %}
+    <link rel="stylesheet" href="{% static 'build/assets/app.css' %}"
+          type="text/css" media="screen, handheld">
+    {% endif %}
+</head>
+<body>
+<ui-view></ui-view>
+<!-- Placed at the end of the document so the page load faster -->
+{% if is_production %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.7/angular.min.js"
+            type="text/javascript"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.7/angular-cookies.min.js"
+            type="text/javascript"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.7/angular-animate.min.js"
+            type="text/javascript"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.14/angular-ui-router.min.js"
+            type="text/javascript"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.12.1/ui-bootstrap-tpls.min.js"
+            type="text/javascript"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.5.0/lodash.min.js"
+            type="text/javascript"></script>
+    <script src="{% static 'ng-lodash/build/ng-lodash.min.js' %}"
+            type="text/javascript"></script>
+{% else %}
+    <script src="{% static 'angular/angular.js' %}" type="text/javascript"></script>
+    <script src="{% static 'angular-cookies/angular-cookies.js' %}"
+            type="text/javascript"></script>
+    <script src="{% static 'angular-animate/angular-animate.js' %}"
+            type="text/javascript"></script>
+    <script src="{% static 'angular-ui-router/release/angular-ui-router.js' %}"
+            type="text/javascript"></script>
+    <script src="{% static 'angular-bootstrap/ui-bootstrap-tpls.js' %}"
+            type="text/javascript"></script>
+    <script src="{% static 'lodash/index.js' %}"
+            type="text/javascript"></script>
+    <script src="{% static 'ng-lodash/build/ng-lodash.js' %}"
+            type="text/javascript"></script>
+{% endif %}
+
+{% if is_production %}
+    <script src="{% static 'build/js/app.min.js' %}"
+            type="text/javascript"></script>
+{% else %}
+    {#<script src="{% static 'build/js/app.js' %}?{% now "U" %}"#}
+    {#        type="text/javascript"></script>#}
+    <script src="{% static 'build/js/app.js' %}"
+            type="text/javascript"></script>
+{% endif %}
+<script src="{% static 'build/assets/app.templates.js' %}?{% now "U" %}"
+        type="text/javascript"></script>
+</body>
+</html>
