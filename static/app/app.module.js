@@ -5,6 +5,7 @@
         .module('bookshelf', [
             'bookshelf.books_index',
             'bookshelf.books_details',
+            'bookshelf.core',
             'blocks.router',
             'ngAnimate',
             'ngCookies',
