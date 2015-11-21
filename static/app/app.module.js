@@ -23,7 +23,8 @@
      *  Still, there is no reason to disable the additional security.
      *
      * @param {$http} $http angular http service
-     */
+     *
+     * @ngInject */
     function csrfRun($http) {
         $http.defaults.xsrfHeaderName = 'X-CSRFToken';
         $http.defaults.xsrfCookieName = 'csrftoken';
