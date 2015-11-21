@@ -1,0 +1,14 @@
+<div class="book-preview thumbnail">
+    <a ui-sref="books-details({bookId: bookData.id})">
+        <img ng-src="{{ bookData.cover }}" alt="{{ bookData.name }}" class="img-thumbnail">
+    </a>
+
+    <div class="caption">
+        <h3 class="name">
+            <a ui-sref="books-details({bookId: bookData.id})">{{ bookData.name }} </a>
+        </h3>
+        <span class="author">by {{ bookData.author.name }}</span>
+        <span class="likes">{{ bookData.likes }}</span>
+        <time am-time-ago="bookData.published" title="{{ bookData.published | amDateFormat: 'dddd, MMMM Do YYYY, h:mm a' }}"></time>
+    </div>
+</div>
