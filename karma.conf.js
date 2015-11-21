@@ -1,5 +1,8 @@
 module.exports = function (config) {
     config.set({
+        preprocessors: {
+            'static/app/**/*.html': ['ng-html2js']
+        },
 
         basePath: './',
 
@@ -12,10 +15,18 @@ module.exports = function (config) {
             'node_modules/angular-bootstrap/ui-bootstrap.js',
             'node_modules/ng-tags-input/build/ng-tags-input.js',
             'node_modules/lodash/index.js',
+            'node_modules/moment/moment.js',
+            'node_modules/angular-moment/angular-moment.js',
+            'static/app/test/matchers.js',
             'static/app/**/*.module.js',
             'static/app/**/*.js',
-            'static/app/*.js'
+            'static/app/*.js',
+            'static/app/**/*.html'
         ],
+
+        ngHtml2JsPreprocessor: {
+            stripPrefix: 'static/app/'
+        },
 
         autoWatch: true,
 
@@ -27,7 +38,8 @@ module.exports = function (config) {
             'karma-chrome-launcher',
             'karma-firefox-launcher',
             'karma-jasmine',
-            'karma-junit-reporter'
+            'karma-junit-reporter',
+            'karma-ng-html2js-preprocessor'
         ],
 
         junitReporter: {
