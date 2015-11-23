@@ -61,14 +61,13 @@
             var filtered = books;
             var category = filterParams ? filterParams.category : '',
                 genre = filterParams ? filterParams.genre : '',
-                searchQuery = searchParams ? searchParams.query : '';
+                searchQuery = searchParams ? searchParams.query ? searchParams.query.toLowerCase() : '' : '';
 
             if (category || genre || searchQuery) {
-
                 filtered = books.filter(function (element) {
                     return (!category || element.genre.category === category )
                         && (!genre || element.genre.name === genre )
-                        && (!searchQuery || element.author.name.indexOf(searchQuery) > -1 || element.name.indexOf(searchQuery) > -1)
+                        && (!searchQuery || element.author.name.toLowerCase().indexOf(searchQuery) > -1 || element.name.toLowerCase().indexOf(searchQuery) > -1)
                 });
             }
             return filtered;

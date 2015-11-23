@@ -160,6 +160,11 @@ describe('Service: booksService', function () {
             expect(filtered.length).toBe(1);
         });
 
+        it('should search ignoring the case', function () {
+            var filtered = booksService.filterBooks(mockData, {query: 'tagore'}, null);
+            expect(filtered.length).toBe(1);
+        });
+
         it('should search & filter at the same time', function () {
             var filtered = booksService.filterBooks(mockData, {query: 'Tagore'}, {
                 category: 'Non-Fiction',
