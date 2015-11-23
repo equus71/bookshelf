@@ -43,7 +43,7 @@ def recommended_for_book_by_id(request, book_id):
 
         recommendations = get_recommendation_for_book(data, book)
 
-        return JsonResponse(recommendations, safe=False)
+        return JsonResponse(recommendations[:3], safe=False)
 
 
 def get_book_by_id(books_data, book_id):
