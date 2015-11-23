@@ -15,6 +15,7 @@ module.exports = function (config) {
             'node_modules/angular-bootstrap/ui-bootstrap.js',
             'node_modules/ng-tags-input/build/ng-tags-input.js',
             'node_modules/lodash/index.js',
+            'node_modules/ng-lodash/build/ng-lodash.js',
             'node_modules/moment/moment.js',
             'node_modules/angular-moment/angular-moment.js',
             'static/app/test/matchers.js',
