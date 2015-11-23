@@ -32,7 +32,6 @@
         function linkFn(scope) {
             scope.selectedCategory = '';
             scope.selectedGenre = '';
-            scope.disabled = angular.isDefined(scope.disable) ? scope.disable : false;
 
             scope.categoryChange = categoryChangeFn;
             scope.genreChange = genreChangeFn;

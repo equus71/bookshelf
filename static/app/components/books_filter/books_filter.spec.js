@@ -1,5 +1,5 @@
 describe('Directive: bs-books-filter', function () {
-    var element, scope, compile,
+    var scope, compile,
         defaultData = {
             categories: ['cat1', 'cat2', 'cat3'], genres: ['gen1', 'gen2', 'gen3'], onChangeCb: function () {
             }
@@ -103,21 +103,21 @@ describe('Directive: bs-books-filter', function () {
 
     describe('selects', function () {
         it('should be disabled if disable flag is true', function () {
-            compiledBooksFilter = createDirective({disable: true}, '<bs-books-filter disable="data.disable"></bs-books-filter>');
+            var compiledBooksFilter = createDirective({disable: true}, '<bs-books-filter disable="data.disable"></bs-books-filter>');
             var selects = compiledBooksFilter.find('select');
             expect(selects.eq(0).prop('disabled')).toBe(true);
             expect(selects.eq(1).prop('disabled')).toBe(true);
         });
 
         it('should be enabled if disable flag is false', function () {
-            compiledBooksFilter = createDirective({disable: false}, '<bs-books-filter disable="data.disable"></bs-books-filter>');
+            var compiledBooksFilter = createDirective({disable: false}, '<bs-books-filter disable="data.disable"></bs-books-filter>');
             var selects = compiledBooksFilter.find('select');
             expect(selects.eq(0).prop('disabled')).toBe(false);
             expect(selects.eq(1).prop('disabled')).toBe(false);
         });
 
         it('should be enabled if disable flag is undefined', function () {
-            compiledBooksFilter = createDirective({}, '<bs-books-filter></bs-books-filter>');
+            var compiledBooksFilter = createDirective({}, '<bs-books-filter></bs-books-filter>');
             var selects = compiledBooksFilter.find('select');
             expect(selects.eq(0).prop('disabled')).toBe(false);
             expect(selects.eq(1).prop('disabled')).toBe(false);
