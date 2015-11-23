@@ -12,11 +12,11 @@ describe('bookshelf.core', function () {
             });
         });
 
-        it('should map /404 route to 404 View template', inject(function ($state, $templateCache) {
+        it('should map /404 route to 404 View template', inject(function ($state) {
             expect($state.get('404').templateUrl).toEqual(views.four0four);
         }));
 
-        it('of bookshelf should work with $state.go', inject(function ($rootScope, $state, $templateCache) {
+        it('of bookshelf should work with $state.go', inject(function ($rootScope, $state) {
             $state.go('404');
             $rootScope.$apply();
             expect($state.is('404')).toBe(true);
@@ -38,11 +38,11 @@ describe('bookshelf.core', function () {
             });
         });
 
-        it('should map /500 route to 500 View template', inject(function ($state, $templateCache) {
+        it('should map /500 route to 500 View template', inject(function ($state) {
             expect($state.get('500').templateUrl).toEqual(views.five00);
         }));
 
-        it('of bookshelf should work with $state.go', inject(function ($rootScope, $state, $templateCache) {
+        it('of bookshelf should work with $state.go', inject(function ($rootScope, $state) {
             $state.go('500');
             $rootScope.$apply();
             expect($state.is('500')).toBe(true);
