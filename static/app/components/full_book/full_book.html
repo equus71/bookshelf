@@ -1,0 +1,33 @@
+<div class="full-book">
+    <div class="row">
+        <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
+            <h1>{{ bookData.name }}</h1>
+
+            <h3> by {{ bookData.author.name }} <span class="pull-right">{{ bookData.likes }}</span></h3>
+
+            <p>
+                published <time am-time-ago="bookData.published"
+                      title="{{ bookData.published | amDateFormat: 'dddd, MMMM Do YYYY, h:mm a' }}"></time>
+            </p>
+            <p>
+                <img ng-src="{{ bookData.cover }}" alt="{{ bookData.name }}" class="img-thumbnail">
+            </p>
+            <p> {{ bookData.description }}</p>
+
+            <p> Categories: <span>{{ bookData.genre.category }}</span> <span>{{ bookData.genre.name }}</span></p>
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
+            <h4>Introduction</h4>
+
+            <p ng-repeat="paragraph in bookData.introduction">{{ paragraph.content }}</p>
+
+            <div class="author text-center">
+                <img ng-src="{{ bookData.author.avatar }}" alt="{{ bookData.author.name }}" class="img-thumbnail">
+                Written by {{ bookData.author.name }}
+            </div>
+        </div>
+    </div>
+</div>
