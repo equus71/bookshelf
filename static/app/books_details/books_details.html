@@ -1,3 +1,13 @@
-<p>
-    book details
-</p>
+<div class="container">
+    <div class="">
+        <bs-spinner ng-if="vm.bookLoading"></bs-spinner>
+        <bs-full-book ng-if="!vm.bookLoading" book-data="vm.book"></bs-full-book>
+        <div class="">
+            <h3></h3>
+            <bs-books-grid
+                    books="vm.recommendations"
+                    ng-if="!vm.recommendationsLoading && !vm.recommendationsError">
+            </bs-books-grid>
+        </div>
+    </div>
+</div>
