@@ -1,7 +1,8 @@
 module.exports = function (config) {
     config.set({
         preprocessors: {
-            'static/app/**/*.html': ['ng-html2js']
+            'static/app/**/*.html': ['ng-html2js'],
+            'node_modules/angular-moment/angular-moment.js': ['browserify']
         },
 
         basePath: './',
@@ -12,8 +13,7 @@ module.exports = function (config) {
             'node_modules/angular-animate/angular-animate.js',
             'node_modules/angular-ui-router/build/angular-ui-router.js',
             'node_modules/angular-mocks/angular-mocks.js',
-            'node_modules/angular-bootstrap/ui-bootstrap.js',
-            'node_modules/ng-tags-input/build/ng-tags-input.js',
+            'node_modules/angular-bootstrap-npm/dist/angular-bootstrap-tpls.js',
             'node_modules/lodash/index.js',
             'node_modules/ng-lodash/build/ng-lodash.js',
             'node_modules/moment/moment.js',
@@ -31,7 +31,7 @@ module.exports = function (config) {
 
         autoWatch: true,
 
-        frameworks: ['jasmine'],
+        frameworks: ['jasmine', 'browserify'],
 
         browsers: ['Chrome'],
 
@@ -40,7 +40,8 @@ module.exports = function (config) {
             'karma-firefox-launcher',
             'karma-jasmine',
             'karma-junit-reporter',
-            'karma-ng-html2js-preprocessor'
+            'karma-ng-html2js-preprocessor',
+            'karma-browserify'
         ],
 
         junitReporter: {
