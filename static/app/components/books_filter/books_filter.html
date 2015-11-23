@@ -1,0 +1,22 @@
+<form class="form-inline">
+    <div class="form-group">
+        <label for="category">Find me the best </label>
+        <select class="form-control" name="category"
+                ng-options="category for category in categories"
+                ng-model="selectedCategory"
+                ng-change="categoryChange()"
+                ng-disabled="disable">
+            <option value="">Any category</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="genre"> books about </label>
+        <select class="form-control" name="genre"
+                ng-options="genre for genre in genres"
+                ng-model="selectedGenre"
+                ng-change="genreChange()"
+                ng-disabled="disable">
+            <option value="">Anything</option>
+        </select>
+    </div>
+</form>
