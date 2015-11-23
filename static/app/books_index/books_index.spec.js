@@ -135,27 +135,27 @@ describe('bookshelf.books_index', function () {
             });
 
             it('should have the loading flag set off', function () {
-                expect(ctrl.loading).toBe(false);
+                return expect(ctrl.loading).toBe(false);
             });
 
             it('should load the books', function () {
-                expect(ctrl.books.src).toEqual(mockData.books);
+                return expect(ctrl.books.src).toEqual(mockData.books);
             });
 
             it('should prepare the categories and genres', function () {
                 expect(ctrl.filters.categories).toEqual(mockData.categories);
-                expect(ctrl.filters.genres).toEqual(mockData.genres);
+                return expect(ctrl.filters.genres).toEqual(mockData.genres);
             });
 
             it('should prepare the paging', function () {
                 expect(ctrl.books.page.length).toBe(6);
-                expect(ctrl.page.total).toBe(2);
+                return expect(ctrl.page.total).toBe(2);
             });
         });
 
         describe('paging', function () {
             it('by default should start from first page', function () {
-                expect(ctrl.page.current).toBe(1);
+                return expect(ctrl.page.current).toBe(1);
             });
 
             describe('on page change', function () {
@@ -167,7 +167,7 @@ describe('bookshelf.books_index', function () {
                     ctrl.pageChange();
 
                     expect(ctrl.page.current).toBe(2);
-                    expect(ctrl.books.page.length).toBe(1);
+                    return expect(ctrl.books.page.length).toBe(1);
                 });
 
                 it('should rest currentPage if bigger than totalPages', function () {
@@ -176,7 +176,7 @@ describe('bookshelf.books_index', function () {
 
                     ctrl.pageChange();
 
-                    expect(ctrl.page.current).toBe(1);
+                    return expect(ctrl.page.current).toBe(1);
                 });
 
                 it('should scroll to top', function () {
@@ -190,13 +190,13 @@ describe('bookshelf.books_index', function () {
                 ctrl.books = {src: mockData.books};
                 ctrl.filterChange({category: 'Fiction'});
 
-                expect(ctrl.books.filtered.length).toBe(2);
+                return expect(ctrl.books.filtered.length).toBe(2);
             });
 
             it('should reset paging', function () {
                 ctrl.filterChange({genre: 'Fantasy'});
 
-                expect(ctrl.page.current).toBe(1);
+                return expect(ctrl.page.current).toBe(1);
             });
         });
 
@@ -205,7 +205,7 @@ describe('bookshelf.books_index', function () {
                 ctrl.books = {src: mockData.books};
                 ctrl.searchChange({query: 'Tolkein'});
 
-                expect(ctrl.books.filtered.length).toBe(1);
+                return expect(ctrl.books.filtered.length).toBe(1);
 
             });
 
@@ -213,13 +213,13 @@ describe('bookshelf.books_index', function () {
                 ctrl.books = {src: mockData.books};
                 ctrl.searchChange({query: 'Tolkein'});
 
-                expect(ctrl.page.current).toBe(1);
+                return expect(ctrl.page.current).toBe(1);
             });
         });
 
         describe('on error', function () {
             it('should redirect to 500', function () {
-
+            //    TODO: define the spec
             });
         });
     });

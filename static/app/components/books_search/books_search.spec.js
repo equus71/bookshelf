@@ -40,7 +40,7 @@ describe('Directive: bs-books-search', function () {
             var search = compiledBooksSearch.find('input');
             expect(search).toBeDefined();
             expect(search.length).toBe(1);
-            expect(search.eq(0).attr('name')).toBe('search');
+            return expect(search.eq(0).attr('name')).toBe('search');
         });
 
     });
@@ -72,13 +72,13 @@ describe('Directive: bs-books-search', function () {
         it('should disable search-box', function () {
             var compiledBooksSearch = createDirective({disable: true});
             var search = compiledBooksSearch.find('input');
-            expect(search.eq(0).prop('disabled')).toBe(true);
+            return expect(search.eq(0).prop('disabled')).toBe(true);
         });
 
         it('should enable search-box', function () {
             var compiledBooksSearch = createDirective({disable: false});
             var search = compiledBooksSearch.find('input');
-            expect(search.eq(0).prop('disabled')).toBe(false);
+            return expect(search.eq(0).prop('disabled')).toBe(false);
         });
 
     });

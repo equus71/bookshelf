@@ -68,7 +68,7 @@ describe('Directive: bs-book', function () {
             var book_cover = compiled_book.find('img');
             expect(book_cover).toBeDefined();
             expect(book_cover.length).toBe(1);
-            return expect(book_cover.eq(0).attr('src')).toBe(defaultData.cover);
+            return expect(book_cover.eq(0).attr('src')).toEqual(defaultData.cover);
         });
 
         it('should show the title', function () {

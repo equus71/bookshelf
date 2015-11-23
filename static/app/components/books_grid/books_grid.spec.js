@@ -112,7 +112,7 @@ describe('Directive: bs-books-grid', function () {
                 expect(shelf).toBeDefined();
                 expect(shelf.length).toBe(1);
                 expect(shelf.eq(0)).toHaveClass('shelf');
-                expect(shelf.eq(0)).toHaveClass('visible-sm');
+                return expect(shelf.eq(0)).toHaveClass('visible-sm');
             });
             it('for medium&large screens should be after 3rd book', function () {
                 expect(books).toBeDefined();
@@ -122,11 +122,11 @@ describe('Directive: bs-books-grid', function () {
                 expect(shelf.length).toBe(1);
                 expect(shelf.eq(0)).toHaveClass('shelf');
                 expect(shelf.eq(0)).toHaveClass('visible-md');
-                expect(shelf.eq(0)).toHaveClass('visible-lg');
+                return expect(shelf.eq(0)).toHaveClass('visible-lg');
             });
             it('for small&medium&large screens should be after the last book', function () {
                 expect(books).toBeDefined();
-                expect(books.length).toBe(4);
+                return expect(books.length).toBe(4);
             });
         });
 

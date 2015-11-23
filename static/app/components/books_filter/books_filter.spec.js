@@ -42,7 +42,7 @@ describe('Directive: bs-books-filter', function () {
             var options = selects.eq(0).find('option');
             expect(options).toBeDefined();
             // this "+ 1" is for a default option 'Any'
-            expect(options.length).toBe(defaultData.categories.length + 1);
+            return expect(options.length).toBe(defaultData.categories.length + 1);
         });
 
         it('should have a list of genres', function () {
@@ -53,7 +53,7 @@ describe('Directive: bs-books-filter', function () {
             var options = selects.eq(1).find('option');
             expect(options).toBeDefined();
             // this "+ 1" is for a default option 'Any'
-            expect(options.length).toBe(defaultData.genres.length + 1);
+            return expect(options.length).toBe(defaultData.genres.length + 1);
         });
 
     });
@@ -76,7 +76,7 @@ describe('Directive: bs-books-filter', function () {
         it('should call on-change callback', function () {
             genreSelect.val('string:cat2').triggerHandler('change');
             expect(onChangeCb).toHaveBeenCalled();
-            expect(onChangeCb).toHaveBeenCalledWith({category: 'cat2', genre: ''});
+            return expect(onChangeCb).toHaveBeenCalledWith({category: 'cat2', genre: ''});
         });
     });
 
@@ -97,7 +97,7 @@ describe('Directive: bs-books-filter', function () {
         it('should call on-change callback', function () {
             genreSelect.val('string:gen2').triggerHandler('change');
             expect(onChangeCb).toHaveBeenCalled();
-            expect(onChangeCb).toHaveBeenCalledWith({category: '', genre: 'gen2'});
+            return expect(onChangeCb).toHaveBeenCalledWith({category: '', genre: 'gen2'});
         });
     });
 
@@ -106,21 +106,21 @@ describe('Directive: bs-books-filter', function () {
             var compiledBooksFilter = createDirective({disable: true}, '<bs-books-filter disable="data.disable"></bs-books-filter>');
             var selects = compiledBooksFilter.find('select');
             expect(selects.eq(0).prop('disabled')).toBe(true);
-            expect(selects.eq(1).prop('disabled')).toBe(true);
+            return expect(selects.eq(1).prop('disabled')).toBe(true);
         });
 
         it('should be enabled if disable flag is false', function () {
             var compiledBooksFilter = createDirective({disable: false}, '<bs-books-filter disable="data.disable"></bs-books-filter>');
             var selects = compiledBooksFilter.find('select');
             expect(selects.eq(0).prop('disabled')).toBe(false);
-            expect(selects.eq(1).prop('disabled')).toBe(false);
+            return expect(selects.eq(1).prop('disabled')).toBe(false);
         });
 
         it('should be enabled if disable flag is undefined', function () {
             var compiledBooksFilter = createDirective({}, '<bs-books-filter></bs-books-filter>');
             var selects = compiledBooksFilter.find('select');
             expect(selects.eq(0).prop('disabled')).toBe(false);
-            expect(selects.eq(1).prop('disabled')).toBe(false);
+            return expect(selects.eq(1).prop('disabled')).toBe(false);
         });
     });
 });
