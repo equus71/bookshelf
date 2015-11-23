@@ -1,1 +1,24 @@
-<p>This is the partial for the books index </p>
+<div>
+    <div class="filter-box">
+        <bs-books-filter categories="vm.filters.categories"
+                         genres="vm.filters.genres"
+                         filter-change="vm.filterChange(filter)"
+                         disable="vm.loading"></bs-books-filter>
+        <bs-books-search searchChange="vm.searchChange(query)"
+                         disable="vm.loading"></bs-books-search>
+    </div>
+    <div ng-if="!vm.loading">
+        <bs-books-grid books="vm.books.page"></bs-books-grid>
+        <uib-pagination total-items="vm.books.filtered"
+                        items-per-page="vm.page.size"
+                        ng-model="vm.page.current"
+                        max-size="5"
+                        ng-change="vm.pageChange()"
+                        boundary-links="true"
+                        rotate="false"
+                        num-pages="5"></uib-pagination>
+    </div>
+    <div ng-if="vm.loading">
+        <bs-spinner></bs-spinner>
+    </div>
+</div>
