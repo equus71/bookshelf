@@ -4,7 +4,7 @@
                          genres="vm.filters.genres"
                          filter-change="vm.filterChange(filter)"
                          disable="vm.loading"></bs-books-filter>
-        <bs-books-search searchChange="vm.searchChange(query)"
+        <bs-books-search search-change="vm.searchChange(query)"
                          disable="vm.loading"></bs-books-search>
     </div>
     <div ng-if="!vm.loading">
