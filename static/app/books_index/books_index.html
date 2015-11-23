@@ -9,7 +9,7 @@
     </div>
     <div ng-if="!vm.loading">
         <bs-books-grid books="vm.books.page"></bs-books-grid>
-        <uib-pagination total-items="vm.books.filtered"
+        <uib-pagination total-items="vm.books.filtered.length"
                         items-per-page="vm.page.size"
                         ng-model="vm.page.current"
                         max-size="5"
