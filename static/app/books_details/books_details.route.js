@@ -16,11 +16,11 @@
             {
                 state: 'books-details',
                 config: {
-                    url: '/book/{bookId:[0-9]{1,8}}',
+                    url: '/book/{bookId:b[0-9]{1,12}}',
                     templateUrl: 'books_details/books_details.html',
                     controller: 'BooksDetailsCtrl',
                     controllerAs: 'vm',
-                    title: 'Books details'
+                    title: 'Book\'s details'
                 }
             }
         ];
