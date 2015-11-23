@@ -11,8 +11,11 @@
     {% if is_production %}
         <link rel="stylesheet" href="{% static 'build/assets/app.min.css' %}"
               type="text/css" media="screen, handheld">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     {% else %}
-        <link rel="stylesheet" href="{% static 'build/assets/app.css' %}"
+        <link rel="stylesheet" href="{% static 'assets/css/app.css' %}"
+              type="text/css" media="screen, handheld">
+        <link rel="stylesheet" href="{% static 'font-awesome/css/font-awesome.css' %}"
               type="text/css" media="screen, handheld">
     {% endif %}
 </head>
