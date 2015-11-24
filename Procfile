@@ -1,1 +1,1 @@
-web: gunicorn coaching_motivation_platform.wsgi --log-file -
+web: gunicorn bookshelf.wsgi --log-file -
