@@ -180,13 +180,13 @@ describe('bookshelf.books_index', function () {
                 });
 
                 it('should scroll to top', inject(function ($document) {
-                    spyOn($document, 'scrollTop');
+                    spyOn($document, 'scrollTo');
                     ctrl.page.current = 2;
                     ctrl.page.total = 2;
 
                     ctrl.pageChange();
 
-                    return expect($document.scrollTop).toHaveBeenCalled();
+                    return expect($document.scrollTo).toHaveBeenCalled();
                 }));
             });
         });
