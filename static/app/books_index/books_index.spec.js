@@ -105,18 +105,19 @@ describe('bookshelf.books_index', function () {
             genres: ['History', 'Arts', 'Christian Books', 'Fantasy']
         };
 
-    beforeEach(function () {
-        module('bookshelf.books_index');
-
-        inject(function ($controller, $q, $rootScope, _booksService_) {
-            scope = $rootScope.$new();
-            booksService = _booksService_;
-            spyOn(booksService, 'getBooks').and.returnValue($q.when({data: mockData.books}));
-            ctrl = $controller('BooksIndexCtrl', {$scope: scope});
-        });
-    });
 
     describe('BooksIndexCtrl controller', function () {
+
+        beforeEach(function () {
+            module('bookshelf.books_index');
+
+            inject(function ($controller, $q, $rootScope, _booksService_) {
+                scope = $rootScope.$new();
+                booksService = _booksService_;
+                spyOn(booksService, 'getBooks').and.returnValue($q.when({data: mockData.books}));
+                ctrl = $controller('BooksIndexCtrl', {$scope: scope});
+            });
+        });
 
         it('should be defined', function () {
             expect(ctrl).toBeDefined();
@@ -218,6 +219,11 @@ describe('bookshelf.books_index', function () {
     });
 
     describe('BooksIndexCtrl controller on error', function () {
+        beforeEach(function () {
+            module('bookshelf.books_index');
+            module('core/500.html');
+        });
+
         it('should redirect to 500', inject(function ($controller, $q, $rootScope, $state, booksService) {
             scope = $rootScope.$new();
             spyOn(booksService, 'getBooks').and.returnValue($q.reject({status: 404}));
