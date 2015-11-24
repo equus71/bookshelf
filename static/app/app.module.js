@@ -8,9 +8,7 @@
             'bookshelf.core',
             'blocks.router',
             'ngAnimate',
-            'ngCookies',
-            'ui.router',
-            'ui.bootstrap'
+            'ngCookies'
         ])
         .run(csrfRun);
 
