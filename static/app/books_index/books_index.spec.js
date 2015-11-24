@@ -179,9 +179,15 @@ describe('bookshelf.books_index', function () {
                     return expect(ctrl.page.current).toBe(1);
                 });
 
-                it('should scroll to top', function () {
-                    //    TODO: define the spec
-                });
+                it('should scroll to top', inject(function ($document) {
+                    spyOn($document, 'scrollTop');
+                    ctrl.page.current = 2;
+                    ctrl.page.total = 2;
+
+                    ctrl.pageChange();
+
+                    return expect($document.scrollTop).toHaveBeenCalled();
+                }));
             });
         });
 

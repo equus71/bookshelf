@@ -8,6 +8,8 @@
         'bookshelf.books_filter',
         'bookshelf.books_service',
         'bookshelf.core',
-        'ui.bootstrap']);
+        'ui.bootstrap',
+        'duScroll'
+    ]);
 
 })();

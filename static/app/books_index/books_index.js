@@ -4,14 +4,14 @@
     angular.module('bookshelf.books_index')
         .controller('BooksIndexCtrl', BooksIndexCtrl);
 
-    BooksIndexCtrl.$inject = ['$state', 'booksService'];
+    BooksIndexCtrl.$inject = ['$document', '$state', 'booksService'];
 
     /**
      * @name BooksIndexCtrl
      * @desc Controller of the view presenting the books
      *
      * @ngInject */
-    function BooksIndexCtrl($state, booksService) {
+    function BooksIndexCtrl($document, $state, booksService) {
         var vm = this;
 
         vm.loading = true;
@@ -61,6 +61,7 @@
                 vm.page.current = 1;
             }
             vm.books.page = getCurrentPage(vm.books, vm.page);
+            $document.scrollTo(0, 0, 1000);
         }
 
         function searchChange(searchParams) {
@@ -77,15 +78,15 @@
             vm.books.page = getCurrentPage(vm.books, vm.page);
         }
 
-        function filterBooks(books, searchParams, filterParams){
+        function filterBooks(books, searchParams, filterParams) {
             return booksService.filterBooks(books.src, searchParams, filterParams);
         }
 
-        function getCurrentPage(books, page){
+        function getCurrentPage(books, page) {
             return books.filtered.slice((page.current - 1) * page.size, page.current * page.size);
         }
 
-        function preparePaging(books){
+        function preparePaging(books) {
             return {
                 size: 6,
                 total: Math.ceil(books.filtered.length / 6),

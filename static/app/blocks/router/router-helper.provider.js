@@ -1,5 +1,5 @@
-/* Help configure the state-base ui.router
-* from ng-demos by John Papa */
+/** Help configure the state-base ui.router
+ *  from ng-demos by John Papa */
 (function() {
     'use strict';
 
@@ -23,9 +23,9 @@
         };
 
         this.$get = RouterHelper;
-        RouterHelper.$inject = ['$location', '$rootScope', '$state'];
+        RouterHelper.$inject = ['$document', '$location', '$rootScope', '$state'];
 
-        function RouterHelper($location, $rootScope, $state) {
+        function RouterHelper($document, $location, $rootScope, $state) {
             var handlingStateChangeError = false;
             var hasOtherwise = false;
             var stateCounts = {
@@ -81,18 +81,19 @@
 
             function init() {
                 handleRoutingErrors();
-                updateDocTitle();
+                updateDocTitleAndPos();
             }
 
             function getStates() { return $state.get(); }
 
-            function updateDocTitle() {
+            function updateDocTitleAndPos() {
                 $rootScope.$on('$stateChangeSuccess',
                     function(event, toState, toParams, fromState, fromParams) {
                         stateCounts.changes++;
                         handlingStateChangeError = false;
                         var title = config.docTitle + ' ' + (toState.title || '');
                         $rootScope.title = title; // data bind to <title>
+                        $document.scrollTo(0, 0, 1000);
                     }
                 );
             }

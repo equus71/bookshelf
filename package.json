@@ -21,6 +21,7 @@
     "angular-cookies": "^1.4.7",
     "angular-mocks": "^1.4.7",
     "angular-moment": "^0.10.3",
+    "angular-scroll": "^1.0.0",
     "angular-ui-router": "^0.2.14",
     "font-awesome": "^4.4.0",
     "grunt-contrib-cssmin": "^0.14.0",

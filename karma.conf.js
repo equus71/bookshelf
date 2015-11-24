@@ -15,6 +15,7 @@ module.exports = function (config) {
             'node_modules/angular-mocks/angular-mocks.js',
             'node_modules/angular-bootstrap-npm/dist/angular-bootstrap-tpls.js',
             'node_modules/lodash/index.js',
+            'node_modules/angular-scroll/angular-scroll.js',
             'node_modules/ng-lodash/build/ng-lodash.js',
             'node_modules/moment/moment.js',
             'node_modules/angular-moment/angular-moment.js',

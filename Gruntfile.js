@@ -5,7 +5,7 @@ module.exports = function (grunt) {
             options: {
                 mainModule: 'bookshelf',
                 externalModules: ['ngLodash', 'ui.router', 'ngAnimate', 'ngCookies',
-                    'ui.bootstrap', 'angularMoment']
+                    'ui.bootstrap', 'angularMoment', 'duScroll']
             },
             app: {
                 src: ['static/app/*.js', 'static/app/**/*.js'],

@@ -3,6 +3,8 @@
 
     angular
         .module('bookshelf.core', [
-            'blocks.router', 'ui.router'
+            'blocks.router',
+            'ui.router',
+            'duScroll'
         ]);
 })();
