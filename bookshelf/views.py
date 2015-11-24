@@ -32,6 +32,16 @@ def book_by_id(request, book_id):
         return JsonResponse(book, safe=False)
 
 
+def fill_up(recommendations, books, source_book):
+    ids = [book.get('id') for book in recommendations]
+    ids.append(source_book.get('id'))
+    while len(recommendations) < 3:
+        first_unique_book = next(book for book in books if book.get('id') not in ids)
+        ids.append(first_unique_book.get('id'))
+        recommendations.append(first_unique_book)
+
+    return recommendations
+
 def recommended_for_book_by_id(request, book_id):
     with open('bookshelf/books.json') as data_file:
         data = json.load(data_file)
@@ -42,6 +52,7 @@ def recommended_for_book_by_id(request, book_id):
             return JsonResponse({}, status=404)
 
         recommendations = get_recommendation_for_book(data, book)
+        recommendations = fill_up(recommendations, data, book)
 
         return JsonResponse(recommendations[:3], safe=False)
 
