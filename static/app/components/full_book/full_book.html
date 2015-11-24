@@ -1,32 +1,33 @@
 <div class="full-book">
-    <div class="row">
+    <div class="row titlesection">
         <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
             <h1>{{ bookData.name }}</h1>
 
-            <h3> by {{ bookData.author.name }} <span class="pull-right">{{ bookData.likes }}</span></h3>
+            <h3 class="headlineauthor"> by {{ bookData.author.name }} <span class="pull-right text-danger"><i class="fa fa-heart-o"></i> {{ bookData.likes }}</span></h3>
 
             <p>
                 published <time am-time-ago="bookData.published"
                       title="{{ bookData.published | amDateFormat: 'dddd, MMMM Do YYYY, h:mm a' }}"></time>
             </p>
-            <p>
+            <p class="text-center">
                 <img ng-src="{{ bookData.cover }}" alt="{{ bookData.name }}" class="img-thumbnail">
             </p>
-            <p> {{ bookData.description }}</p>
+            <p class="text-justify"> {{ bookData.description }}</p>
 
-            <p> Categories: <span>{{ bookData.genre.category }}</span> <span>{{ bookData.genre.name }}</span></p>
+            <p> Categories: <span>{{ bookData.genre.category }}</span>, <span>{{ bookData.genre.name }}</span></p>
 
         </div>
     </div>
-    <div class="row">
+    <div class="row contentsection">
         <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
             <h4>Introduction</h4>
+            <h3 class="introheadline">{{ bookData.introduction[0].content.slice(0, getHeadlineSliceEnd(bookData.introduction[0].content)+1)}}</h3>
 
-            <p ng-repeat="paragraph in bookData.introduction">{{ paragraph.content }}</p>
+            <p class="text-justify" ng-repeat="paragraph in bookData.introduction">{{ $first ? paragraph.content.slice(getHeadlineSliceEnd(bookData.introduction[0].content)+2) : paragraph.content }}</p>
 
             <div class="author text-center">
-                <img ng-src="{{ bookData.author.avatar }}" alt="{{ bookData.author.name }}" class="img-thumbnail">
-                Written by {{ bookData.author.name }}
+                <img ng-src="{{ bookData.author.avatar }}" alt="{{ bookData.author.name }}" class="img-circle authoravatar">
+                <p>Written by {{ bookData.author.name }} </p>
             </div>
         </div>
     </div>

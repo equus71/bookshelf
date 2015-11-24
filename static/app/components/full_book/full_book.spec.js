@@ -16,7 +16,7 @@ describe('Directive: bs-full-book', function () {
             },
             "id": "b841267346",
             "introduction": [{
-                "content": "Lorem ipsum dolor sit amet,"
+                "content": "Donec at tempus augue. Cras ut turpis vestibulum."
             }, {
                 "content": "Integer pretium quam et "
             }, {
@@ -93,11 +93,20 @@ describe('Directive: bs-full-book', function () {
             return expect(images.eq(1).attr('src')).toEqual(defaultData.author.avatar);
         });
 
+        it('should show the first sentence of introductory content as headline', function () {
+            var headlines = compiled_full_book.find('h3');
+            expect(headlines).toBeDefined();
+            expect(headlines.length).toBe(2);
+            return expect(headlines.eq(1).html()).toContainText('Donec at tempus augue.');
+        });
+
         it('should show the introductory content', function () {
             var full_book = compiled_full_book.html();
-            defaultData.introduction.forEach(function(element){
+            expect(full_book).toContainText('Cras ut turpis vestibulum.');
+            defaultData.introduction.slice(1).forEach(function (element) {
                 expect(full_book).toContainText(element.content);
             });
+            return;
         });
 
         it('should show votes/likes', function () {
@@ -105,14 +114,13 @@ describe('Directive: bs-full-book', function () {
         });
 
         describe('published date', function () {
-            it('should show absolute date', function(){
+            it('should show absolute date', function () {
                 return expect(compiled_full_book.html()).toContainText(filter('amDateFormat')(test_date, 'dddd, MMMM Do YYYY, h:mm a'));
             });
-            it('should show relative date', function(){
+            it('should show relative date', function () {
                 return expect(compiled_full_book.html()).toContainText('10 years ago');
             });
         });
-
     });
 
 });

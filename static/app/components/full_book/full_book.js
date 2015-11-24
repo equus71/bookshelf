@@ -18,9 +18,20 @@
             scope: {
                 bookData: '='
             },
+            link: linkFn,
             templateUrl: 'components/full_book/full_book.html'
         };
         return directive;
+
+        function linkFn(scope){
+            scope.getHeadlineSliceEnd = getHeadlineSliceEnd;
+
+            function getHeadlineSliceEnd(content){
+                if (typeof content !== 'string')
+                    return -1;
+                return content.search(/[,.?!]\s/);
+            }
+        }
     }
 
 })();
