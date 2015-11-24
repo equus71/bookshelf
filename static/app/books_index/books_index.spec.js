@@ -215,11 +215,15 @@ describe('bookshelf.books_index', function () {
                 return expect(ctrl.page.current).toBe(1);
             });
         });
+    });
 
-        describe('on error', function () {
-            it('should redirect to 500', function () {
-            //    TODO: define the spec
-            });
-        });
+    describe('BooksIndexCtrl controller on error', function () {
+        it('should redirect to 500', inject(function ($controller, $q, $rootScope, $state, booksService) {
+            scope = $rootScope.$new();
+            spyOn(booksService, 'getBooks').and.returnValue($q.reject({status: 404}));
+            ctrl = $controller('BooksIndexCtrl', {$scope: scope});
+            scope.$digest();
+            expect($state.is('500')).toBe(true);
+        }));
     });
 });
