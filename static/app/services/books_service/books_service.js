@@ -65,9 +65,10 @@
 
             if (category || genre || searchQuery) {
                 filtered = books.filter(function (element) {
-                    return (!category || element.genre.category === category )
-                        && (!genre || element.genre.name === genre )
-                        && (!searchQuery || element.author.name.toLowerCase().indexOf(searchQuery) > -1 || element.name.toLowerCase().indexOf(searchQuery) > -1)
+                    var matchCategory = (!category || element.genre.category === category ),
+                      matchGenre = (!genre || element.genre.name === genre ),
+                      matchQuery = (!searchQuery || element.author.name.toLowerCase().indexOf(searchQuery) > -1 || element.name.toLowerCase().indexOf(searchQuery) > -1);
+                    return matchCategory && matchGenre && matchQuery;
                 });
             }
             return filtered;
@@ -81,10 +82,10 @@
         function getFilters(books) {
             return {
                 genres: lodash.uniq(books.map(function (element) {
-                    return element.genre.name
+                    return element.genre.name;
                 })),
                 categories: lodash.uniq(books.map(function (element) {
-                    return element.genre.category
+                    return element.genre.category;
                 }))
             };
         }

@@ -7,6 +7,7 @@
         'bookshelf.books_search',
         'bookshelf.books_filter',
         'bookshelf.books_service',
+        'bookshelf.core',
         'ui.bootstrap']);
 
 })();

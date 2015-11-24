@@ -7,10 +7,10 @@
         <bs-books-search search-change="vm.searchChange(query)"
                          disable="vm.loading"></bs-books-search>
     </div>
-    <div class="row" ng-if="!vm.loading">
+    <div class="row books" ng-if="!vm.loading">
         <bs-books-grid books="vm.books.page"></bs-books-grid>
-        <div ng-if="vm.books.filtered.length === 0">
-            no results
+        <div ng-if="vm.books.filtered.length === 0" class=" text-center">
+            <h4>Sorry, we did not found any results matching the criteria.</h4>
         </div>
         <div class="text-center">
             <uib-pagination total-items="vm.books.filtered.length"
