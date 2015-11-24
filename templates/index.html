@@ -9,13 +9,13 @@
     {% load staticfiles %}
 
     {% if is_production %}
-        <link rel="stylesheet" href="{% static 'build/assets/app.min.css' %}"
+        <link rel="stylesheet" href="{% static 'assets/app.min.css' %}"
               type="text/css" media="screen, handheld">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="{% static 'hover.css/css/hover-min.css' %}"
               type="text/css" media="screen, handheld">
     {% else %}
-        <link rel="stylesheet" href="{% static 'build/assets/app.css' %}"
+        <link rel="stylesheet" href="{% static 'assets/app.css' %}"
               type="text/css" media="screen, handheld">
         <link rel="stylesheet" href="{% static 'font-awesome/css/font-awesome.css' %}"
               type="text/css" media="screen, handheld">
@@ -83,16 +83,16 @@
 {% endif %}
 
 {% if is_production %}
-    <script src="{% static 'build/js/app.min.js' %}"
+    <script src="{% static 'js/app.min.js' %}"
             type="text/javascript"></script>
-    <script src="{% static 'build/assets/app.templates.min.js' %}"
+    <script src="{% static 'assets/app.templates.min.js' %}"
             type="text/javascript"></script>
 {% else %}
     {#<script src="{% static 'build/js/app.js' %}?{% now "U" %}"#}
     {#        type="text/javascript"></script>#}
-    <script src="{% static 'build/js/app.js' %}"
+    <script src="{% static 'js/app.js' %}"
             type="text/javascript"></script>
-    <script src="{% static 'build/assets/app.templates.js' %}?{% now "U" %}"
+    <script src="{% static 'assets/app.templates.js' %}?{% now "U" %}"
             type="text/javascript"></script>
 {% endif %}
 

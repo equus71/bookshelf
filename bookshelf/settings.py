@@ -25,7 +25,7 @@ DEBUG = os.environ.get('DEBUG', False)
 
 TEMPLATE_DEBUG = os.environ.get('TEMPLATE_DEBUG', False)
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1']
 
 
 # Application definition
@@ -75,10 +75,9 @@ STATIC_ROOT = 'staticfiles'
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static')
+    os.path.join(BASE_DIR, 'static/build'),
+    os.path.join(BASE_DIR, 'node_modules')
 ]
-if not PRODUCTION:
-    STATICFILES_DIRS.append(os.path.join(BASE_DIR, 'node_modules'))
 
 TEMPLATE_DIRS = (
     os.path.join(BASE_DIR, 'templates').replace('\\', '/'),
