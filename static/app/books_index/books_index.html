@@ -1,5 +1,5 @@
-<div>
-    <div class="filter-box">
+<div class="well books-index">
+    <div class="row filters text-center">
         <bs-books-filter categories="vm.filters.categories"
                          genres="vm.filters.genres"
                          filter-change="vm.filterChange(filter)"
@@ -7,17 +7,22 @@
         <bs-books-search search-change="vm.searchChange(query)"
                          disable="vm.loading"></bs-books-search>
     </div>
-    <div ng-if="!vm.loading">
+    <div class="row" ng-if="!vm.loading">
         <bs-books-grid books="vm.books.page"></bs-books-grid>
-        <uib-pagination total-items="vm.books.filtered.length"
-                        items-per-page="vm.page.size"
-                        ng-model="vm.page.current"
-                        max-size="5"
-                        ng-change="vm.pageChange()"
-                        boundary-links="true"
-                        rotate="false"></uib-pagination>
+        <div ng-if="vm.books.filtered.length === 0">
+            no results
+        </div>
+        <div class="text-center">
+            <uib-pagination total-items="vm.books.filtered.length"
+                            items-per-page="vm.page.size"
+                            ng-model="vm.page.current"
+                            max-size="4"
+                            ng-change="vm.pageChange()"
+                            boundary-links="true"
+                            rotate="false"></uib-pagination>
+        </div>
     </div>
-    <div ng-if="vm.loading">
+    <div ng-if="vm.loading" class="text-center">
         <bs-spinner></bs-spinner>
     </div>
 </div>

@@ -1,13 +1,20 @@
-<div class="container">
-    <div class="">
-        <bs-spinner ng-if="vm.bookLoading"></bs-spinner>
-        <bs-full-book ng-if="!vm.bookLoading" book-data="vm.book"></bs-full-book>
-        <div class="">
-            <h3></h3>
-            <bs-books-grid
-                    books="vm.recommendations"
-                    ng-if="!vm.recommendationsLoading && !vm.recommendationsError">
-            </bs-books-grid>
+<div class="books-details well">
+    <div class="navigation row">
+        <div class="col-xs-12">
+            <a ui-sref="books-index" class="btn"><i class="fa fa-chevron-left"></i> back to index</a>
         </div>
+    </div>
+    <bs-spinner ng-if="vm.bookLoading"></bs-spinner>
+    <bs-full-book ng-if="!vm.bookLoading" book-data="vm.book"></bs-full-book>
+    <div class="recommendations" ng-if="!vm.recommendationsError">
+        <div class="recommendationsheadline text-center">
+            <h3>Similar reading</h3>
+            <h4>If you liked this book, we recommend you check out these emerging titles</h4>
+        </div>
+        <bs-books-grid
+                books="vm.recommendations"
+                ng-if="!vm.recommendationsLoading">
+        </bs-books-grid>
+        <bs-spinner ng-if="vm.recommendationsLoading"></bs-spinner>
     </div>
 </div>
