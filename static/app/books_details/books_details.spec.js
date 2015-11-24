@@ -123,7 +123,7 @@ describe('bookshelf.books_details', function () {
         });
     });
 
-    describe('BooksIndexCtrl controller errors', function () {
+    describe('BooksIndexCtrl controller on error', function () {
 
         beforeEach(function () {
             module('bookshelf.books_details');
@@ -131,41 +131,36 @@ describe('bookshelf.books_details', function () {
             module('core/404.html');
         });
 
-        describe('on error', function () {
-            it('should redirect to 404 if book does not exist', inject(function ($controller, $q, $rootScope, $state, _booksService_) {
-                scope = $rootScope.$new();
-                booksService = _booksService_;
-                spyOn(booksService, 'getBookById').and.returnValue($q.reject({status: 404}));
-                spyOn(booksService, 'recommendedForBookById').and.returnValue($q.when(mockData.books));
-                ctrl = $controller('BooksDetailsCtrl', {$scope: scope});
-                scope.$digest();
-                expect($state.is('404')).toBe(true);
-            }));
+        it('should redirect to 404 if book does not exist', inject(function ($controller, $q, $rootScope, $state, booksService) {
+            scope = $rootScope.$new();
+            spyOn(booksService, 'getBookById').and.returnValue($q.reject({status: 404}));
+            spyOn(booksService, 'recommendedForBookById').and.returnValue($q.when(mockData.books));
+            ctrl = $controller('BooksDetailsCtrl', {$scope: scope});
+            scope.$digest();
+            expect($state.is('404')).toBe(true);
+        }));
 
-            it('should redirect to 500 otherwise', inject(function ($controller, $q, $rootScope, $state, _booksService_) {
-                scope = $rootScope.$new();
-                booksService = _booksService_;
-                spyOn(booksService, 'getBookById').and.returnValue($q.reject({status: 500}));
-                spyOn(booksService, 'recommendedForBookById').and.returnValue($q.when(mockData.books));
-                ctrl = $controller('BooksDetailsCtrl', {$scope: scope});
-                scope.$digest();
-                expect($state.is('500')).toBe(true);
-            }));
+        it('should redirect to 500 otherwise', inject(function ($controller, $q, $rootScope, $state, booksService) {
+            scope = $rootScope.$new();
+            spyOn(booksService, 'getBookById').and.returnValue($q.reject({status: 500}));
+            spyOn(booksService, 'recommendedForBookById').and.returnValue($q.when(mockData.books));
+            ctrl = $controller('BooksDetailsCtrl', {$scope: scope});
+            scope.$digest();
+            expect($state.is('500')).toBe(true);
+        }));
 
-            it('should silently log errors with recommendations', inject(function ($controller, $q, $rootScope, $state, _booksService_) {
-                // better to present the page without recommendations but with the main content than 500 page
-                scope = $rootScope.$new();
-                booksService = _booksService_;
-                spyOn(booksService, 'getBookById').and.returnValue($q.when(mockData.book));
-                spyOn(booksService, 'recommendedForBookById').and.returnValue($q.reject({status: 500}));
-                ctrl = $controller('BooksDetailsCtrl', {$scope: scope});
-                scope.$digest();
-                expect(ctrl.recommendationsError).toBe(true);
-                /* plain controller is not setting the state to the books-details,
-                 * but we're okey as long it is not one of the error states */
-                expect($state.is('404')).toBe(false);
-                expect($state.is('500')).toBe(false);
-            }));
-        });
+        it('should silently log errors with recommendations', inject(function ($controller, $q, $rootScope, $state, booksService) {
+            // better to present the page without recommendations but with the main content than 500 page
+            scope = $rootScope.$new();
+            spyOn(booksService, 'getBookById').and.returnValue($q.when(mockData.book));
+            spyOn(booksService, 'recommendedForBookById').and.returnValue($q.reject({status: 500}));
+            ctrl = $controller('BooksDetailsCtrl', {$scope: scope});
+            scope.$digest();
+            expect(ctrl.recommendationsError).toBe(true);
+            /* plain controller is not setting the state to the books-details,
+             * but we're okey as long it is not one of the error states */
+            expect($state.is('404')).toBe(false);
+            expect($state.is('500')).toBe(false);
+        }));
     });
 });
