@@ -1,3 +1,4 @@
+/* jshint -W117 */
 describe('Directive: bs-books-search', function () {
     var scope, compile,
         validTemplate = '<bs-books-search search-change="data.searchChange(query)" disable="data.disable"></bs-books-search>',
@@ -83,4 +84,3 @@ describe('Directive: bs-books-search', function () {
 
     });
 });
-

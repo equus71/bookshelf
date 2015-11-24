@@ -1,5 +1,4 @@
-'use strict';
-
+/* jshint -W117 */
 describe('bookshelf.books_details', function () {
     var views = {
         booksDetails: 'books_details/books_details.html'

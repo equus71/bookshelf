@@ -1,3 +1,4 @@
+/* jshint -W117 */
 describe('Service: booksService', function () {
     var httpBackend, rootScope, booksService,
         mockData = [{
@@ -194,4 +195,3 @@ describe('Service: booksService', function () {
         });
     });
 });
-

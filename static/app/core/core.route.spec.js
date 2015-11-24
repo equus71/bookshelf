@@ -1,3 +1,4 @@
+/* jshint -W117 */
 describe('bookshelf.core', function () {
     var views = {
         four0four: 'core/404.html',

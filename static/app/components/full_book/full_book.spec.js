@@ -1,3 +1,4 @@
+/* jshint -W117 */
 describe('Directive: bs-full-book', function () {
     var test_date = new Date();
     test_date.setYear(test_date.getFullYear() - 10);
@@ -115,4 +116,3 @@ describe('Directive: bs-full-book', function () {
     });
 
 });
-

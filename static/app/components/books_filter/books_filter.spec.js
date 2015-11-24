@@ -1,3 +1,4 @@
+/* jshint -W117 */
 describe('Directive: bs-books-filter', function () {
     var scope, compile,
         defaultData = {
@@ -124,4 +125,3 @@ describe('Directive: bs-books-filter', function () {
         });
     });
 });
-

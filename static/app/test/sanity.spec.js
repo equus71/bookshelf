@@ -1,5 +1,4 @@
-'use strict';
-
+/* jshint -W117 */
 describe('truths', function () {
 
     it('should be true', inject(function () {
@@ -8,6 +7,6 @@ describe('truths', function () {
 
     xit('should be skipped', inject(function () {
         expect(4).toBeGreaterThan(5);
-    }))
+    }));
 
 });

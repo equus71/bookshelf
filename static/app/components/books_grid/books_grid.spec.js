@@ -1,3 +1,4 @@
+/* jshint -W117 */
 describe('Directive: bs-books-grid', function () {
     var element, scope, compile,
         defaultData = [{
@@ -142,4 +143,3 @@ describe('Directive: bs-books-grid', function () {
 
 
 });
-
