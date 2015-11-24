@@ -1,0 +1,58 @@
+/* books-grid component */
+.books-grid
+  .book
+    margin-top: 10px
+
+@media (min-width: $screen-sm-min)
+  .books-grid
+    margin: 0 50px
+    .book
+      z-index: 30
+      margin-top: 0
+      &:before
+        content: ''
+        display: block
+        width: 90%
+        height: 1em
+        background: rgba(0, 0, 0, .35)
+        border-radius: 50%
+        position: absolute
+        bottom: -10px
+        -webkit-filter: blur(5px)
+        filter: blur(5px)
+        z-index: -1
+
+    .shelf
+      border-bottom: 30px solid #61c261
+      border-left: 20px solid transparent
+      border-right: 20px solid transparent
+      top: -15px
+      z-index: 10
+      margin-bottom: 20px
+
+    .shelf:after
+      content: ''
+      background: #468b46
+      height: 20px
+      //width: 105%
+      position: absolute
+      top: 30px
+      left: 0
+      right: 0
+      z-index: 20
+      margin: 0 -20px
+
+/* end: books-grid component */
+
+/* book component */
+.book-preview
+  .name
+    margin-top: 10px
+
+@media (min-width: $screen-sm-min)
+  .book-preview
+    margin: 0 15px
+    .caption
+      min-height: 138px
+
+/* end: book component */

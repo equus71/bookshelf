@@ -2,28 +2,44 @@
   * Bootstrap variables
   */
 
-$brand-primary: #009d0e !default
-$brand-success: #ccb510 !default
-$brand-info: #4af4dd !default
-$brand-warning: #f6f85b !default
+$brand-primary: #61c261 !default
+//$brand-success: #ccb510 !default
+//$brand-info: #4af4dd !default
+//$brand-warning: #f6f85b !default
 $brand-danger: #df2530 !default
 
 $border-radius-small:   2px !default
 $border-radius-base:    3px !default
 $border-radius-large:   5px !default
 
-$btn-default-color: #333 !default
-$btn-primary-color: #fff !default
-$btn-success-color: #fff !default
-$btn-info-color: #fff !default
-$btn-warning-color: #000 !default
-$btn-danger-color: #fff !default
+//$btn-default-color: #333 !default
+//$btn-primary-color: #fff !default
+//$btn-success-color: #fff !default
+//$btn-info-color: #fff !default
+//$btn-warning-color: #000 !default
+//$btn-danger-color: #fff !default
+
+$headings-font-family: "Muli", Helvetica, Arial, sans-serif !default
+$font-family-base: "Raleway", Helvetica, Arial, sans-serif !default
+
+$thumbnail-padding: 6px !default
 
 /**
   * Import customized Bootstrap
   */
 
 @import "_app_bootstrap.sass"
+
+/**
+  * Bootstrap overrides
+  */
+
+.well
+  padding: 0 15px
+
+.img-thumbnail
+  padding: 0
+  border: 0 none
 
 /**
   * App styles
@@ -34,6 +50,50 @@ $btn-danger-color: #fff !default
   * Common variables & styles
   */
 
+body
+  background-color: #f4f1ec
+
+.main-content
+  margin-top: 10px
+  position: relative
+  padding-left: 0
+  padding-right: 0
+
+// state transition animation
+.view-transition-fade-in.ng-enter
+  -webkit-transition-property: opacity
+  -moz-transition-property: opacity
+  -o-transition-property: opacity
+  transition-property: opacity
+  -webkit-transition-duration: 0.5s
+  -moz-transition-duration: 0.5s
+  -o-transition-duration: 0.5s
+  transition-duration: 0.5s
+  opacity: 0
+  position: absolute
+  left: 0
+  right: 0
+
+.view-transition-fade-in.ng-enter-active
+  opacity: 1
+
+.view-transition-fade-out.ng-leave
+  -webkit-transition-property: opacity
+  -moz-transition-property: opacity
+  -o-transition-property: opacity
+  transition-property: opacity
+  -webkit-transition-duration: 0.5s
+  -moz-transition-duration: 0.5s
+  -o-transition-duration: 0.5s
+  transition-duration: 0.5s
+  opacity: 1
+  position: absolute
+  left: 0
+  right: 0
+
+.view-transition-fade-out.ng-leave-active
+  opacity: 0
+
 /**
   * Partials styles
   * Adjusted to the application's modules
@@ -41,3 +101,7 @@ $btn-danger-color: #fff !default
 
 @import "app/_books_details.sass"
 @import "app/_books_index.sass"
+@import "app/_widgets.sass"
+@import "app/_books_search.sass"
+@import "app/_books_grid.sass"
+@import "app/_full_book.sass"
