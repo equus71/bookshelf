@@ -139,7 +139,7 @@ describe('bookshelf.books_index', function () {
             });
 
             it('should load the books', function () {
-                return expect(ctrl.books.src).toEqual(mockData.books);
+                return expect(ctrl.books.data).toEqual(mockData.books);
             });
 
             it('should prepare the categories and genres', function () {
@@ -162,7 +162,7 @@ describe('bookshelf.books_index', function () {
                 it('should switch the page', function () {
                     ctrl.page.current = 2;
                     ctrl.page.total = 2;
-                    ctrl.books.filtered = mockData.books;
+                    ctrl.books.data = mockData.books;
 
                     ctrl.pageChange();
 
@@ -194,9 +194,10 @@ describe('bookshelf.books_index', function () {
         describe('on filter change', function () {
             it('should filter books', function () {
                 ctrl.books = {src: mockData.books};
-                ctrl.filterChange({category: 'Fiction'});
+                ctrl.filterChange({category: 'Fiction', genre: 'Arts'});
 
-                return expect(ctrl.books.filtered.length).toBe(2);
+                expect(booksService.getBooks.calls.count()).toBe(2);
+                return expect(booksService.getBooks.calls.argsFor(1)).toEqual([{category: 'Fiction', genre: 'Arts', search: ''}]);
             });
 
             it('should reset paging', function () {
@@ -211,8 +212,8 @@ describe('bookshelf.books_index', function () {
                 ctrl.books = {src: mockData.books};
                 ctrl.searchChange({query: 'Tolkein'});
 
-                return expect(ctrl.books.filtered.length).toBe(1);
-
+                expect(booksService.getBooks.calls.count()).toBe(2);
+                return expect(booksService.getBooks.calls.argsFor(1)).toEqual([{category: '', genre: '', search: 'Tolkein'}]);
             });
 
             it('should reset paging', function () {

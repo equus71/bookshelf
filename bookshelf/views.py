@@ -13,9 +13,11 @@ class IndexView(TemplateView):
         return context
 
 
-def books(request):
+def get_books(request):
     with open('bookshelf/books.json') as data_file:
         data = json.load(data_file)
+
+        data = filter_books(request, data)
 
         return JsonResponse(data, safe=False)
 
@@ -42,6 +44,7 @@ def fill_up(recommendations, books, source_book):
 
     return recommendations
 
+
 def recommended_for_book_by_id(request, book_id):
     with open('bookshelf/books.json') as data_file:
         data = json.load(data_file)
@@ -66,3 +69,19 @@ def get_recommendation_for_book(books_data, source_book):
             book.get('genre', {}).get('name') == source_book.get('genre', {}).get('name')
             and book.get('genre', {}).get('category') == source_book.get('genre', {}).get('category')
             and book.get('id') != source_book.get('id')]
+
+
+def filter_books(request, books):
+    filtered = books
+    category = request.GET.get('category')
+    genre = request.GET.get('genre')
+    search = request.GET.get('search', '').lower()
+
+    if category or genre or search:
+        filtered = [book for book in books
+                    if ((not category or book.get('genre', {}).get('category') == category)
+                        and (not genre or book.get('genre', {}).get('name') == genre)
+                        and (not search or book.get('author').get('name').lower().find(search) > -1
+                             or book.get('name').lower().find(search) > -1))]
+
+    return filtered

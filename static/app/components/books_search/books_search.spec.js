@@ -46,7 +46,7 @@ describe('Directive: bs-books-search', function () {
 
     });
 
-    describe('on search query change', function () {
+    describe('query', function () {
         var compiledBooksSearch, onChangeCb, search;
 
         beforeEach(function () {
@@ -58,13 +58,25 @@ describe('Directive: bs-books-search', function () {
             search = compiledBooksSearch.find('input');
         });
 
-        it('should call on-change callback', inject(function ($timeout) {
-            search.val('Tolkein').triggerHandler('input');
-            // timeout is necessary to test a model with debounce > 0
+        it('should be submitted on form submit', inject(function ($timeout) {
+            search.val('Tolkein');
+            compiledBooksSearch.find('form').triggerHandler('submit');
+            // timeout is necessary to give angular time to propagate events
             $timeout(function () {
                 expect(scope.searchQuery).toEqual('Tolkein');
                 expect(onChangeCb).toHaveBeenCalled();
-                expect(onChangeCb).toHaveBeenCalledWith({query: 'Tolkein'});
+                return expect(onChangeCb).toHaveBeenCalledWith({query: 'Tolkein'});
+            });
+        }));
+
+        it('should be submitted on button click', inject(function ($timeout) {
+            search.val('Tolkein');
+            compiledBooksSearch.find('button').triggerHandler('click');
+            // timeout is necessary to give angular time to propagate events
+            $timeout(function () {
+                expect(scope.searchQuery).toEqual('Tolkein');
+                expect(onChangeCb).toHaveBeenCalled();
+                return expect(onChangeCb).toHaveBeenCalledWith({query: 'Tolkein'});
             });
         }));
     });

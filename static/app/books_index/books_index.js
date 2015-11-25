@@ -30,8 +30,7 @@
             size: 6
         };
         vm.books = {
-            src: [],
-            filtered: [],
+            data: [],
             page: []
         };
 
@@ -41,13 +40,20 @@
             booksService.getBooks().then(getBooks, booksError);
         }
 
-        function getBooks(data) {
-            vm.books.src = data.data;
-            vm.filters = booksService.getFilters(vm.books.src);
-            vm.books.filtered = filterBooks(vm.books, vm.searchParams, vm.filterParams);
+        function loadBooks(data) {
+            vm.books.data = data.data;
             vm.page = preparePaging(vm.books);
             vm.books.page = getCurrentPage(vm.books, vm.page);
             vm.loading = false;
+        }
+
+        function getBooks(data) {
+            loadBooks(data);
+            vm.filters = booksService.getFilters(vm.books.data);
+        }
+
+        function getFilteredBooks(data){
+            loadBooks(data);
         }
 
         function booksError(data) {
@@ -66,30 +72,31 @@
 
         function searchChange(searchParams) {
             vm.searchParams = searchParams;
-            vm.books.filtered = filterBooks(vm.books, vm.searchParams, vm.filterParams);
-            vm.page = preparePaging(vm.books);
-            vm.books.page = getCurrentPage(vm.books, vm.page);
+            callFilterBooks(vm.searchParams, vm.filterParams);
         }
 
         function filterChange(filterParams) {
             vm.filterParams = filterParams;
-            vm.books.filtered = filterBooks(vm.books, vm.searchParams, vm.filterParams);
-            vm.page = preparePaging(vm.books);
-            vm.books.page = getCurrentPage(vm.books, vm.page);
+            callFilterBooks(vm.searchParams, vm.filterParams);
         }
 
-        function filterBooks(books, searchParams, filterParams) {
-            return booksService.filterBooks(books.src, searchParams, filterParams);
+        function callFilterBooks(searchParams, filterParams) {
+            vm.loading = true;
+            booksService.getBooks({
+                category: filterParams.category,
+                genre: filterParams.genre,
+                search: searchParams.query
+            }).then(getFilteredBooks, booksError);
         }
 
         function getCurrentPage(books, page) {
-            return books.filtered.slice((page.current - 1) * page.size, page.current * page.size);
+            return books.data.slice((page.current - 1) * page.size, page.current * page.size);
         }
 
         function preparePaging(books) {
             return {
                 size: 6,
-                total: Math.ceil(books.filtered.length / 6),
+                total: Math.ceil(books.data.length / 6),
                 current: 1
             }
         }

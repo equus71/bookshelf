@@ -26,10 +26,12 @@
 
         /**
          * @desc Retrieve all books from server
+         * @param filters the optional filters
          * @returns {HttpPromise} promise of the books' data
          */
-        function getBooks() {
-            return $http.get('api/v1/books');
+        function getBooks(filters) {
+            filters = angular.isDefined(filters) ? filters : [];
+            return $http.get('api/v1/books', {params: filters});
         }
 
         /**

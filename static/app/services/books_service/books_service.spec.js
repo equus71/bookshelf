@@ -92,6 +92,57 @@ describe('Service: booksService', function () {
             rootScope.$apply();
             httpBackend.flush();
         });
+
+        it('should support filtering by search query', function () {
+            httpBackend.when('GET', 'api/v1/books?search=Tagore').respond(200, [mockData[3]]);
+            booksService.getBooks({search: 'Tagore'}).then(function (data) {
+                expect(data.data.length).toBe(1);
+                expect(data.data.map(function (elm) {
+                    return elm.id;
+                })).toEqual([mockData[3]].map(function (elm) {
+                    return elm.id;
+                }));
+            });
+            rootScope.$apply();
+            httpBackend.flush();
+        });
+
+        it('should support filtering by category', function () {
+            httpBackend.when('GET', 'api/v1/books?category=Non-Fiction').respond(200, [mockData[3]]);
+            booksService.getBooks({category: 'Non-Fiction'}).then(function (data) {
+                expect(data.data.length).toBe(1);
+                expect(data.data.map(function (elm) {
+                    return elm.id;
+                })).toEqual([mockData[3]].map(function (elm) {
+                    return elm.id;
+                }));
+            });
+            rootScope.$apply();
+            httpBackend.flush();
+        });
+
+        it('should support filtering by genre', function () {
+            httpBackend.when('GET', 'api/v1/books?genre=Arts').respond(200, [mockData[2]]);
+            booksService.getBooks({genre: 'Arts'}).then(function (data) {
+                expect(data.data.length).toBe(1);
+                expect(data.data.map(function (elm) {
+                    return elm.id;
+                })).toEqual([mockData[2]].map(function (elm) {
+                    return elm.id;
+                }));
+            });
+            rootScope.$apply();
+            httpBackend.flush();
+        });
+
+        it('should return empty list for excluding filters', function () {
+            httpBackend.when('GET', 'api/v1/books?category=Fiction&genre=Arts&search=Tolkein').respond(200, []);
+            booksService.getBooks({search: 'Tolkein', genre: 'Arts', category: 'Fiction'}).then(function (data) {
+                expect(data.data.length).toBe(0);
+            });
+            rootScope.$apply();
+            httpBackend.flush();
+        });
     });
 
     describe('#getBookById', function () {
@@ -130,60 +181,7 @@ describe('Service: booksService', function () {
         });
     });
 
-    describe('#filterBooks', function () {
-        it('should exist', function () {
-            expect(booksService.filterBooks).toBeDefined();
-        });
-
-        it('should not filter data at all if all params are empty', function () {
-            var filtered = booksService.filterBooks(mockData);
-            //reference compassion
-            expect(mockData).toBe(filtered);
-        });
-
-        it('should filter data by genre', function () {
-            var filtered = booksService.filterBooks(mockData, null, {genre: 'Fantasy'});
-            expect(filtered.length).toBe(1);
-        });
-
-        it('should filter data by category', function () {
-            var filtered = booksService.filterBooks(mockData, null, {category: 'Non-Fiction'});
-            expect(filtered.length).toBe(3);
-        });
-
-        it('should search by title', function () {
-            var filtered = booksService.filterBooks(mockData, {query: 'Mockingbird'}, null);
-            expect(filtered.length).toBe(1);
-        });
-
-        it('should search by author', function () {
-            var filtered = booksService.filterBooks(mockData, {query: 'Tagore'}, null);
-            expect(filtered.length).toBe(1);
-        });
-
-        it('should search ignoring the case', function () {
-            var filtered = booksService.filterBooks(mockData, {query: 'tagore'}, null);
-            expect(filtered.length).toBe(1);
-        });
-
-        it('should search & filter at the same time', function () {
-            var filtered = booksService.filterBooks(mockData, {query: 'Tagore'}, {
-                category: 'Non-Fiction',
-                genre: 'Christian Books'
-            });
-            expect(filtered.length).toBe(1);
-        });
-
-        it('should return empty list for excluding params', function () {
-            var filtered = booksService.filterBooks(mockData, {query: 'Tolkein'}, {
-                category: 'Fantasy',
-                genre: 'Christian Books'
-            });
-            expect(filtered.length).toBe(0);
-        });
-    });
-
-    describe('#getFilters', function () {
+        describe('#getFilters', function () {
         it('should exist', function () {
             expect(booksService.getFilters).toBeDefined();
         });
