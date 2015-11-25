@@ -15,15 +15,6 @@
     "tests"
   ],
   "devDependencies": {
-    "bootstrap-sass": "^3.3.5",
-    "grunt": "^0.4.5",
-    "grunt-angular-builder": "^1.0.0-beta3",
-    "grunt-angular-templates": "^0.5.7",
-    "grunt-bower-install-simple": "^1.1.0",
-    "grunt-contrib-clean": "^0.6.0",
-    "grunt-contrib-uglify": "^0.8.0",
-    "grunt-ng-annotate": "^0.10.0",
-    "grunt-sass": "^1.1.0",
     "angular": "^1.4.7",
     "angular-animate": "^1.4.7",
     "angular-bootstrap-npm": "0.14.3",
@@ -32,8 +23,17 @@
     "angular-moment": "^0.10.3",
     "angular-scroll": "^1.0.0",
     "angular-ui-router": "^0.2.14",
+    "bootstrap-sass": "^3.3.5",
     "font-awesome": "^4.4.0",
+    "grunt": "^0.4.5",
+    "grunt-angular-builder": "^1.0.0-beta3",
+    "grunt-angular-templates": "^0.5.7",
+    "grunt-bower-install-simple": "^1.1.0",
+    "grunt-contrib-clean": "^0.6.0",
     "grunt-contrib-cssmin": "^0.14.0",
+    "grunt-contrib-uglify": "^0.8.0",
+    "grunt-ng-annotate": "^0.10.0",
+    "grunt-sass": "^1.1.0",
     "jasmine-core": "^2.3.4",
     "karma": "~0.12",
     "karma-browserify": "^4.4.0",
@@ -42,14 +42,16 @@
     "karma-jasmine": "^0.3.5",
     "karma-junit-reporter": "^0.2.2",
     "karma-ng-html2js-preprocessor": "^0.2.0",
+    "karma-phantomjs-launcher": "^0.2.1",
     "lodash": "^3.5.0",
-    "moment": "^2.10.6"
+    "moment": "^2.10.6",
+    "phantomjs": "^1.9.19"
   },
   "dependencies": {
-    "hover.css": "^2.0.2",
     "ng-lodash": "^0.2.3"
   },
   "scripts": {
-    "test": "karma start karma.conf.js"
+    "test": "karma start karma.conf.js",
+    "ci": "karma start ci.conf.js --single-run"
   }
 }
