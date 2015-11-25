@@ -4,17 +4,18 @@
             <a ui-sref="books-index" class="btn"><i class="fa fa-chevron-left"></i> back to index</a>
         </div>
     </div>
-    <bs-spinner ng-if="vm.bookLoading"></bs-spinner>
-    <bs-full-book ng-if="!vm.bookLoading" book-data="vm.book"></bs-full-book>
-    <div class="recommendations" ng-if="!vm.recommendationsError">
+    <bs-spinner ng-if="vm.bookLoading" class="fade-animation"></bs-spinner>
+    <bs-full-book ng-if="!vm.bookLoading" book-data="vm.book" class="fade-animation"></bs-full-book>
+    <div class="recommendations fade-animation" ng-if="!vm.recommendationsError">
         <div class="recommendationsheadline text-center">
             <h3>Similar reading</h3>
             <h4>If you liked this book, we recommend you check out these emerging titles</h4>
         </div>
         <bs-books-grid
+                class="fade-animation"
                 books="vm.recommendations"
                 ng-if="!vm.recommendationsLoading">
         </bs-books-grid>
-        <bs-spinner ng-if="vm.recommendationsLoading"></bs-spinner>
+        <bs-spinner ng-if="vm.recommendationsLoading" class="fade-animation"></bs-spinner>
     </div>
 </div>
