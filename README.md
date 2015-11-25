@@ -7,6 +7,27 @@ The app is done in the javascript with the AngularJS. It is wrapped by a simple 
 
 You can check out the live demo: [https://salty-cliffs-2401.herokuapp.com/](https://salty-cliffs-2401.herokuapp.com/)
 
+## Tech Outline
+
+The app is build with:
+
+ * AngularJS 
+ * ui-bootstrap
+ * angular-ui-router
+ * angular-scroll
+ * moment.js (+angular-moment)
+ * lodash (+ng-lodash)
+ * bootstrap-sass
+ * font-awesome
+ 
+The build process of js, templates, sass is handled by Grunt (see: `Gruntfile.js` for details) -- both for the development and the production.
+
+The stylesheets are build upon customized Bootstrap (see: `_app_bootstrap.sass`). All components have their own files with partial styles.
+
+The test are written with Karma and Jasmine.
+
+The app is powered with a simple django application. It serves the files and deliver the sample data from the challenge.
+
 ## Deployment
 
 #### Development
@@ -29,6 +50,8 @@ You can build the application with:
 ```
 grunt development
 ```
+
+or run separately the task `grunt debug`, `grunt sass`, `grunt ngtemplates` (e.g. It is more convenient to connect those tasks to the file watchers in the IDE).
  
 Run local server with:
 
