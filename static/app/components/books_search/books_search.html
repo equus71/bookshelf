@@ -1,12 +1,13 @@
-<form class="form-inline books-search">
-    <div class="form-group">
-        <label for="search" class="sr-only">Search for a book by author or title</label>
+<form class="form-inline books-search" ng-submit="searchChangeFn()" name="searchForm">
+    <div class="input-group">
         <input type="text" class="form-control" name="search"
                placeholder="Search books"
                ng-model="searchQuery"
-               ng-change="searchChangeFn()"
-               ng-model-options="{ debounce: { 'default': 500, 'blur': 0 } }"
                ng-disabled="disable">
-        <span class="fa fa-search inputicon"></span>
+        <label for="search" class="sr-only">Search for a book by author or title</label>
+        <span class="input-group-btn">
+            <button class="btn btn-primary" type="submit">Search <i class="fa fa-search"></i>
+            </button>
+        </span>
     </div>
 </form>
