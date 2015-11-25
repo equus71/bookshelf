@@ -1,12 +1,11 @@
 # Bookshelf
 
-Bookshelf is an app done for a coding challenge. This is a simple SPA. The aim of the app is to present a browsable and searchable books' index and present the single book's details.
-The app is the done in the javascript with the AngularJS. It is wrapped by a simple django application serving as a data backend. Still, the main focus is the browser client.
+The Bookshelf is an app done for a coding challenge. This is a simple SPA. The aim of the app is to present a browsable and searchable books' index and present the single book's details.
+The app is done in the javascript with the AngularJS. It is wrapped by a simple django application serving as a data backend. Still, the main focus is the browser client.
 
 ## Demo
 
-You can check out the live demo:
-[https://salty-cliffs-2401.herokuapp.com/](https://salty-cliffs-2401.herokuapp.com/)
+You can check out the live demo: [https://salty-cliffs-2401.herokuapp.com/](https://salty-cliffs-2401.herokuapp.com/)
 
 ## Deployment
 
@@ -92,6 +91,7 @@ You can run the tests with:
 npm test
 ```
 
+You can also check the status of the tests at the [build server](https://circleci.com/gh/equus71/bookshelf).
 
 ## License
 GNU AFFERO GENERAL PUBLIC LICENSE 3.0
