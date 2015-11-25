@@ -82,10 +82,11 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-cssmin');
 
     grunt.registerTask('release', ['clean:app', 'angular-builder', 'ngAnnotate', 'uglify:app',
-        'clean:partials', 'sass', 'cssmin']);
+        'clean:partials', 'sass', 'cssmin', 'ngtemplates', 'uglify:templates']);
     grunt.registerTask('heroku', ['clean:app', 'angular-builder', 'ngAnnotate', 'uglify:app',
         'clean:partials', 'sass', 'cssmin', 'ngtemplates', 'uglify:templates']);
-    grunt.registerTask('debug', ['clean:app', 'angular-builder', 'sass']);
+    grunt.registerTask('development', ['clean:app', 'angular-builder', 'sass', 'ngtemplates']);
+    grunt.registerTask('debug', ['clean:app', 'angular-builder']);
     grunt.registerTask('templates', ['ngtemplates', 'uglify:templates']);
 
 };
