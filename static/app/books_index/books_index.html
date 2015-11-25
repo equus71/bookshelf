@@ -7,13 +7,13 @@
         <bs-books-search search-change="vm.searchChange(query)"
                          disable="vm.loading"></bs-books-search>
     </div>
-    <div class="row books" ng-if="!vm.loading">
+    <div class="row books fade-animation" ng-if="!vm.loading">
         <bs-books-grid books="vm.books.page"></bs-books-grid>
-        <div ng-if="vm.books.filtered.length === 0" class=" text-center">
+        <div ng-if="vm.books.data.length === 0" class=" text-center">
             <h4>Sorry, we did not found any results matching the criteria.</h4>
         </div>
         <div class="text-center">
-            <uib-pagination total-items="vm.books.filtered.length"
+            <uib-pagination total-items="vm.books.data.length"
                             items-per-page="vm.page.size"
                             ng-model="vm.page.current"
                             max-size="4"
@@ -22,7 +22,7 @@
                             rotate="false"></uib-pagination>
         </div>
     </div>
-    <div ng-if="vm.loading" class="text-center">
+    <div ng-if="vm.loading" class="text-center fade-animation">
         <bs-spinner></bs-spinner>
     </div>
 </div>
