@@ -85,12 +85,16 @@ describe('Directive: bs-books-search', function () {
         it('should disable search-box', function () {
             var compiledBooksSearch = createDirective({disable: true});
             var search = compiledBooksSearch.find('input');
+            var button = compiledBooksSearch.find('button');
+            expect(button.eq(0).prop('disabled')).toBe(true);
             return expect(search.eq(0).prop('disabled')).toBe(true);
         });
 
         it('should enable search-box', function () {
             var compiledBooksSearch = createDirective({disable: false});
             var search = compiledBooksSearch.find('input');
+            var button = compiledBooksSearch.find('button');
+            expect(button.eq(0).prop('disabled')).toBe(false);
             return expect(search.eq(0).prop('disabled')).toBe(false);
         });
 
